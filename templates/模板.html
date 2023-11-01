@@ -1,0 +1,217 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block extra_css %}
+    <!-- ION Slider -->
+    <link href="{% static 'libs/ion-rangeslider/css/ion.rangeSlider.min.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock extra_css %}
+{% block content %}
+    <div class="row">
+        <div class="col-xl-3 col-lg-4">
+            <div class="card">
+
+
+                <div class="card-body">
+                    <h5 class="font-size-14 mb-3">课程目录</h5>
+
+                    <div class="accordion ecommerce" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <i class="mdi mdi-desktop-classic font-size-16 align-middle me-2"></i> 第一章
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled categories-list mb-0">
+                                        <li><a href="{% url 'test' %}"><i class="mdi mdi-circle-medium me-1"></i>
+                                            简介</a></li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> 入门</a></li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> 熟悉</a></li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> 精通</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                    <i class="mdi mdi-pinwheel-outline font-size-16 align-middle me-2"></i> 第三章
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled categories-list mb-0">
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Clothing</a></li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Footwear</a></li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Toys</a></li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Baby care</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                    <i class="mdi mdi-pinwheel-outline font-size-16 align-middle me-2"></i> 第三章
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled categories-list mb-0">
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Clothing</a></li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Footwear</a></li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Toys</a></li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Baby care</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFour" aria-expanded="false"
+                                        aria-controls="collapseFour">
+                                    <i class="mdi mdi-dumbbell font-size-16 align-middle me-2"></i> 第四章
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled categories-list mb-0">
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Gym equipment</a>
+                                        </li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Yoga mat</a></li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Dumbbells</a></li>
+                                        <li><a href="#"><i class="mdi mdi-circle-medium me-1"></i> Protein
+                                            supplements</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12" style="height: 500px">
+                            <div style="font-size: 20px">
+                                <label>1</label>
+                                <label>.</label>
+                                <label id="question-content">{{ Question_data.0.content }}</label>
+                            </div>
+                            <hr>
+                            <div>
+
+                            {#单选框#}
+                                <form id="form_answer">
+                                    <div class="form-check mt-2">
+                                        <input type="radio" id="optionA" name="radioOptions" value="A"
+                                               class="form-check-input">
+                                        <label>A.</label>
+                                        <label for="optionA">{{ Answer_data.0.content }}</label><br>
+                                    </div>
+                                    <div class="form-check mt-2">
+                                        <input type="radio" id="optionB" name="radioOptions" value="B"
+                                               class="form-check-input">
+                                        <label>B.</label>
+                                        <label for="optionB">{{ Answer_data.1.content }}</label><br>
+                                    </div>
+                                    <div class="form-check mt-2">
+                                        <input type="radio" id="optionC" name="radioOptions" value="C"
+                                               class="form-check-input">
+                                        <label>C.</label>
+                                        <label for="optionC">{{ Answer_data.2.content }}</label><br>
+                                    </div>
+                                    <div class="form-check mt-2">
+                                        <input type="radio" id="optionD" name="radioOptions" value="D"
+                                               class="form-check-input">
+                                        <label>D.</label>
+                                        <label for="optionD">{{ Answer_data.3.content }}</label><br>
+                                    </div>
+                                </form>
+
+                                {#多选框#}
+                                <form>
+                                    <div class="form-check mt-2">
+                                        <input type="checkbox" id="optionA" name="checkboxOptions[]" value="A"
+                                               class="form-check-input">
+                                        <label>A.</label>
+                                        <label for="optionA">Option A</label><br>
+                                    </div>
+
+                                    <div class="form-check mt-2">
+                                        <input type="checkbox" id="optionB" name="checkboxOptions[]" value="B"
+                                               class="form-check-input">
+                                        <label>B.</label>
+                                        <label for="optionB">Option B</label><br>
+                                    </div>
+
+                                    <div class="form-check mt-2">
+                                        <input type="checkbox" id="optionC" name="checkboxOptions[]" value="C"
+                                               class="form-check-input">
+                                        <label>C.</label>
+                                        <label for="optionC">Option C</label><br>
+                                    </div>
+
+                                    <div class="form-check mt-2">
+                                        <input type="checkbox" id="optionD" name="checkboxOptions[]" value="D"
+                                               class="form-check-input">
+                                        <label>D.</label>
+                                        <label for="optionD">Option D</label><br>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="text-center mt-5">
+                            <button type="button" id="pre-button" class="btn btn-primary waves-effect waves-light"
+                            >
+                                上一题
+                            </button>
+                            <button type="button" id="next-button" class="btn btn-primary waves-effect waves-light"
+                                    onclick="clickMe()">
+                                下一题
+                            </button>
+                            <button type="submit" class="btn btn-success waves-effect waves-light">提交试卷</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+{% endblock %}
+
+{% block extra_javascript %}
+    <!-- Ion Range Slider-->
+    <script src="{% static 'libs/ion-rangeslider/js/ion.rangeSlider.min.js' %}"></script>
+
+    <!-- init js -->
+    <script src="{% static 'js/pages/product-filter-range.init.js' %}"></script>
+    <script type="text/javascript">
+        function clickMe() {
+            $.ajax({
+                    url: '/exam/get-question/',
+                    type: 'post',
+                    data: $("#form_answer").serialize(),
+                    dataType: "JSON"
+                }
+            )
+        }
+    </script>
+{% endblock extra_javascript %}

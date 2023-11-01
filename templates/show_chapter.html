@@ -1,0 +1,105 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block extra_css %}
+    <!-- ION Slider -->
+    <link href="{% static 'libs/ion-rangeslider/css/ion.rangeSlider.min.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock extra_css %}
+{% block content %}
+    <div class="row">
+        <div class="col-xl-3 col-lg-4">
+            <div class="card">
+
+
+                <div class="card-body">
+                    <h5 class="font-size-14 mb-3">课程目录</h5>
+                    <div class="accordion ecommerce" id="accordionExample">
+
+
+                        {% for chapter in Chapter_data %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false"
+                                            aria-controls="collapse{{ forloop.counter }}">
+                                        <i class="mdi mdi-desktop-classic font-size-16 align-middle me-2"></i> {{ chapter.content }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse"
+                                     aria-labelledby="heading{{ forloop.counter }}"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <ul class="list-unstyled categories-list mb-0">
+                                            {% for unit in chapter.unit_set.all %}
+                                                <li onclick="showUnitContent('{{ unit.id }}')"><a href="#"><i
+                                                        class="mdi mdi-circle-medium me-1"></i>{{ unit.content }}</a>
+                                                </li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12" style="height: 70vh">
+                            <div style="font-size: 20px">
+                                <label>当前小节有以下知识点</label>
+                                <hr>
+                                <span id="Knowledge_point_list"></span>
+                                <p id="knowledgePointContent"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- end row -->
+    </div>
+{% endblock %}
+
+{% block extra_javascript %}
+    <!-- Ion Range Slider-->
+    <script src="{% static 'libs/ion-rangeslider/js/ion.rangeSlider.min.js' %}"></script>
+
+    <!-- init js -->
+    <script src="{% static 'js/pages/product-filter-range.init.js' %}"></script>
+
+    <script>
+        function showUnitContent(unitId) {
+            // 发送 AJAX 请求获取知识点内容
+            // 这里使用 jQuery 的 AJAX 方法发送请求，确保你已经引入了 jQuery 库
+            // 动态显示每个小节的知识点
+            $.ajax({
+                url: 'get_unit_content/',  // 替换为你的获取知识点内容的 URL
+                type: 'GET',
+                data: {unit_id: unitId},
+                dataType: "JSON",
+                success: function (response) {
+                    // 更新面板内容
+                    let html = '';
+                    $.each(response, function (index, item) {
+                        html += item + '<br>';
+                    });
+                    $('#Knowledge_point_list').html(html);
+                },
+                error: function () {
+                    alert('获取知识点内容失败');
+                }
+            });
+        }
+
+    </script>
+
+
+{% endblock extra_javascript %}
