@@ -1,0 +1,10 @@
+{
+    "editor.formatOnSave": true,
+    // pylint config
+    "pylint.interpreter": [
+        "/home/nukeexplode/anaconda3/envs/tkqtools/bin"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+}
